@@ -12,7 +12,7 @@
     "test": "hardhat test"
   },
   "dependencies": {
-    "@rainbow-me/rainbowkit": "0.12.15",
+    "@rainbow-me/rainbowkit": "0.12.14",
     "antd": "^5.6.2",
     "bignumber.js": "^9.1.1",
     "ethers": "5.7.2",

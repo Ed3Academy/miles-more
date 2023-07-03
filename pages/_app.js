@@ -1,17 +1,23 @@
 import '../styles/globals.css'
 import '@rainbow-me/rainbowkit/styles.css'
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import { goerli, mainnet, polygon, polygonMumbai } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
+import { getDefaultWallets, RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit'
+import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 
 const { chains, provider, webSocketProvider } = configureChains([mainnet, polygon, polygonMumbai, goerli], [publicProvider()])
 
-const { connectors } = getDefaultWallets({
-  appName: 'RainbowKit App',
-  projectId: '132cf2f1853b90635f3f2f3d68fe1245',
-  chains
-})
+// const { connectors } = getDefaultWallets({
+//   appName: 'RainbowKit App',
+//   chains
+// })
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Recommended',
+    wallets: [metaMaskWallet({ chains })]
+  }
+])
 
 const wagmiClient = createClient({
   autoConnect: true,
